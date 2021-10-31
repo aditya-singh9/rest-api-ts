@@ -13,7 +13,6 @@ async function connect() {
     console.log("DB connected!");
   } catch (error) {
     console.log(error);
-
     process.exit(1);
   }
 }

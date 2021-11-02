@@ -1,5 +1,6 @@
-import { type } from "os";
 import { object, string, TypeOf } from "zod";
+
+//these info should be given in the body
 export const createUserSchema = object({
   body: object({
     name: string({

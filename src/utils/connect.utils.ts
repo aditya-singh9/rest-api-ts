@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
-import { environments } from "./environment.utils";
 
 async function connect() {
   dotenv.config();
-  const dbName = environments.DB_NAME;
-  const dbUser = environments.DB_USER;
-  const dbPassword = environments.DB_PASS;
+  const dbName = process.env.DB_NAME;
+  const dbUser = process.env.DB_USER;
+  const dbPassword = process.env.DB_PASS;
   const dburi = `mongodb+srv://${dbUser}:${dbPassword}@api-ts.onxdw.mongodb.net/${dbName}?retryWrites=true&w=majority`;
   try {
     await mongoose.connect(dburi);

@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { NextFunction } from "express";
 
 export interface UserDocument extends mongoose.Document {
   email: string;

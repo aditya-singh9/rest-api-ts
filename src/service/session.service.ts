@@ -1,5 +1,6 @@
+import { Session } from "inspector";
 import { get } from "lodash";
-import { FilterQuery } from "mongoose";
+import { FilterQuery, UpdateQuery } from "mongoose";
 import SessionModel, { SessionDocument } from "../models/session.model";
 import { verifyJwt, signJwt } from "../utils/jwt.utils";
 import { findUser } from "./user.service";
@@ -39,4 +40,11 @@ export async function reIssueAccessToken({
 export async function findSession(query: FilterQuery<SessionDocument>) {
   //lean is same as toJSON
   return SessionModel.find(query).lean();
+}
+
+export async function updateSession(
+  query: FilterQuery<SessionDocument>,
+  update: UpdateQuery<SessionDocument>
+) {
+  return SessionModel.updateOne(query, update);
 }

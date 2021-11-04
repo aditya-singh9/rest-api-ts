@@ -1,5 +1,11 @@
 import { Express, Request, Response } from "express";
 import {
+  createPostHandler,
+  deletePostHandler,
+  getPostHandler,
+  updatePostHandler,
+} from "./controller/post.controller";
+import {
   createUserSessionHandler,
   deleteSessionHandler,
   getUserSessionsHandler,
@@ -7,6 +13,12 @@ import {
 import { createUserHandler } from "./controller/user.controller";
 import requireUser from "./middleware/requireUser";
 import validateResource from "./middleware/validateResource";
+import {
+  createPostSchema,
+  deletePostSchema,
+  getPostSchema,
+  updatePostSchema,
+} from "./schema/post.schema";
 import { createSessionSchema } from "./schema/session.schema";
 import { createUserSchema } from "./schema/user.schema";
 
@@ -22,5 +34,25 @@ function routes(app: Express) {
   );
   app.get("/api/sessions", requireUser, getUserSessionsHandler);
   app.delete("/api/sessions", requireUser, deleteSessionHandler);
+  app.post(
+    "/api/posts",
+    [requireUser, validateResource(createPostSchema)],
+    createPostHandler
+  );
+  app.put(
+    "/api/posts/:postId",
+    [requireUser, validateResource(updatePostSchema)],
+    updatePostHandler
+  );
+  app.get(
+    "/api/posts/:postId",
+    validateResource(getPostSchema),
+    getPostHandler
+  );
+  app.delete(
+    "/api/posts/:postId",
+    [requireUser, validateResource(deletePostSchema)],
+    deletePostHandler
+  );
 }
 export default routes;

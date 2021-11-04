@@ -22,13 +22,13 @@ export async function createUserSessionHandler(req: Request, res: Response) {
 
   const accessToken = signJwt(
     { ...user, session: session._id },
-    { expiresIn: "-1" } // 15 minutes
+    { expiresIn: "15m" } // 15 minutes
   );
 
   // create a refresh token
   const refreshToken = signJwt(
     { ...user, session: session._id },
-    { expiresIn: "1y" } // 15 minutes
+    { expiresIn: "1y" } //1yr
   );
 
   // return access & refresh tokens

@@ -4,7 +4,7 @@ import connect from "./utils/connect";
 import routes from "./routes";
 import dotenv from "dotenv";
 import { environments } from "./utils/environment.utils";
-import deserializeUser from "./middleware/deserializeuser";
+import deserializeUser from "./middleware/deserializeUser";
 
 dotenv.config;
 // const port = config.get<number>("port");

@@ -10,6 +10,7 @@ const deserializeUser = (req: Request, res: Response, next: NextFunction) => {
     ""
   );
 
+  const refreshToken = get(req, "header.x-refresh");
   if (!accessToken) {
     return next();
   }
@@ -21,6 +22,8 @@ const deserializeUser = (req: Request, res: Response, next: NextFunction) => {
     return next();
   }
 
+  if (expired && refreshToken) {
+  }
   return next();
 };
 
